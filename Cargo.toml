@@ -1,8 +1,22 @@
 [package]
+authors = ["Natsune Mochizuki <me@natsuneko.cat>"]
+categories = ["command-line-utilities"]
+description = "EPIC is a Ethereum RPC CLI client written in Rust."
+homepage = "https://github.com/natsuneko-laboratory/epic"
+license = "MIT/Apache-2.0"
 name = "epic"
+repository = "https://github.com/natsuneko-laboratory/epic"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+clap = { version = "3", features = ["suggestions", "color", "derive"]}
+jsonrpc-core = "18"
+jsonrpc-core-client = { version = "18", features = ["http", "tls"]}
+jsonrpc-derive = "18"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tokio = { version = "1.16.1", features = ["full"] }
