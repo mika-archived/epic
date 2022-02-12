@@ -19,6 +19,10 @@ impl EthereumClient {
     pub fn get_block_number(&self) -> impl Future<Output = RpcResult<String>> {
         self.0.call_method("eth_blockNumber", "String", ())
     }
+
+    pub fn get_chain_id(&self) -> impl Future<Output = RpcResult<String>> {
+        self.0.call_method("eth_chainId", "String", ())
+    }
 }
 
 pub async fn get_client(endpoint: Option<String>) -> Result<EthereumClient> {

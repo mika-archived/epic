@@ -26,6 +26,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let result = match args.subcommand {
         commands::SubCommand::Accounts(a) => commands::accounts::exec(a, globals).await,
         commands::SubCommand::BlockNumber(a) => commands::blocknumber::exec(a, globals).await,
+        commands::SubCommand::ChainId(a) => commands::chainid::exec(a, globals).await,
     };
 
     match result {
