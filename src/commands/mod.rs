@@ -6,10 +6,10 @@ pub enum SubCommand {
     Accounts(accounts::Args),
 
     #[clap()]
-    BlockNumber(blocknumber::Args),
+    BlockNumber(block_number::Args),
 
     #[clap()]
-    ChainId(chainid::Args),
+    ChainId(chain_id::Args),
 }
 
 pub struct GlobalArgs {
@@ -24,5 +24,5 @@ impl GlobalArgs {
 }
 
 pub mod accounts;
-pub mod blocknumber;
-pub mod chainid;
+pub mod block_number;
+pub mod chain_id;
