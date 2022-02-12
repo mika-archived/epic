@@ -9,5 +9,16 @@ pub enum SubCommand {
     BlockNumber(blocknumber::Args),
 }
 
+pub struct GlobalArgs {
+    endpoint: Option<String>,
+    is_json: bool,
+}
+
+impl GlobalArgs {
+    pub fn new(endpoint: Option<String>, is_json: bool) -> Self {
+        Self { endpoint, is_json }
+    }
+}
+
 pub mod accounts;
 pub mod blocknumber;

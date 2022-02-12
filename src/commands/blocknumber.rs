@@ -1,3 +1,4 @@
+use crate::commands::GlobalArgs;
 use crate::error::{Error, Result};
 use crate::eth::client;
 use crate::eth::default::RpcResult;
@@ -5,19 +6,13 @@ use crate::eth::default::RpcResult;
 use clap::Parser;
 
 #[derive(Parser)]
-pub struct Args {
-    #[clap(long)]
-    endpoint: Option<String>,
+pub struct Args {}
 
-    #[clap(long)]
-    json: bool,
-}
-
-pub async fn exec(args: Args) -> Result<()> {
-    let client = client::get_client(args.endpoint).await?;
+pub async fn exec(_args: Args, global_args: GlobalArgs) -> Result<()> {
+    let client = client::get_client(global_args.endpoint).await?;
     let result = client.get_block_number().await?;
 
-    let output = if args.json {
+    let output = if global_args.is_json {
         RpcResult::from(result).to_json()
     } else {
         let block_number =
