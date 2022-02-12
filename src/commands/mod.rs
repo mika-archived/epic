@@ -10,6 +10,9 @@ pub enum SubCommand {
 
     #[clap()]
     ChainId(chain_id::Args),
+
+    #[clap()]
+    FeeHistory(fee_history::Args),
 }
 
 pub struct GlobalArgs {
@@ -26,3 +29,4 @@ impl GlobalArgs {
 pub mod accounts;
 pub mod block_number;
 pub mod chain_id;
+pub mod fee_history;

@@ -1,4 +1,5 @@
 use crate::error::{Error, Result};
+use crate::eth::entity;
 use jsonrpc_core_client::futures::Future;
 use jsonrpc_core_client::{RpcChannel, RpcResult, TypedClient};
 
@@ -22,6 +23,32 @@ impl EthereumClient {
 
     pub fn get_chain_id(&self) -> impl Future<Output = RpcResult<String>> {
         self.0.call_method("eth_chainId", "String", ())
+    }
+
+    pub fn get_fee_history_by_int<'a>(
+        &self,
+        block_count: u16,
+        newest_block: u128,
+        reward_percentiles: Vec<f32>,
+    ) -> impl Future<Output = RpcResult<entity::FeeHistory>> + 'a {
+        self.0.call_method(
+            "eth_feeHistory",
+            "FeeHistory",
+            (block_count, newest_block, reward_percentiles),
+        )
+    }
+
+    pub fn get_fee_history_by_str<'a>(
+        &self,
+        block_count: u16,
+        newest_block: String,
+        reward_percentiles: Vec<f32>,
+    ) -> impl Future<Output = RpcResult<entity::FeeHistory>> + 'a {
+        self.0.call_method(
+            "eth_feeHistory",
+            "FeeHistory",
+            (block_count, newest_block, reward_percentiles),
+        )
     }
 }
 

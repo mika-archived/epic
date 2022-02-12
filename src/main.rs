@@ -27,6 +27,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         commands::SubCommand::Accounts(a) => commands::accounts::exec(a, globals).await,
         commands::SubCommand::BlockNumber(a) => commands::block_number::exec(a, globals).await,
         commands::SubCommand::ChainId(a) => commands::chain_id::exec(a, globals).await,
+        commands::SubCommand::FeeHistory(a) => commands::fee_history::exec(a, globals).await,
     };
 
     match result {
