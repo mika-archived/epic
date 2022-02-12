@@ -16,6 +16,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Args = Args::parse();
 
     let result = match args.subcommand {
+        commands::SubCommand::Accounts(a) => commands::accounts::exec(a).await,
         commands::SubCommand::BlockNumber(a) => commands::blocknumber::exec(a).await,
     };
 

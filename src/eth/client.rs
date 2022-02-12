@@ -12,6 +12,10 @@ impl From<RpcChannel> for EthereumClient {
 }
 
 impl EthereumClient {
+    pub fn get_accounts(&self) -> impl Future<Output = RpcResult<Vec<String>>> {
+        self.0.call_method("eth_accounts", "Vec<String>", ())
+    }
+
     pub fn get_block_number(&self) -> impl Future<Output = RpcResult<String>> {
         self.0.call_method("eth_blockNumber", "String", ())
     }
